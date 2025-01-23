@@ -19,20 +19,23 @@ def players():
 
 def choose_token(player1):
     while True:
-        token_choose = input(
-            f"{player1}, choose a token to play (x, o, or press 'Enter' for random choice): "
-        ).lower()
-        if token_choose == "x":
-            return ["x", "o"]
-        elif token_choose == "o":
-            return ["o", "x"]
-        elif not token_choose:
-            tokens = ["x", "o"]
-            random.shuffle(tokens)
-            print(f"{player1} will play with {tokens[0]}")
-            return tokens
-        else:
-            print("Invalid token choice. Please choose 'x' or 'o'.")
+        try:
+            token_choose = input(
+                f"{player1}, choose a token to play (x, o, or press 'Enter' for random choice): "
+            ).lower()
+            if token_choose == "x":
+                return ["x", "o"]
+            elif token_choose == "o":
+                return ["o", "x"]
+            elif not token_choose:
+                tokens = ["x", "o"]
+                random.shuffle(tokens)
+                print(f"{player1} will play with {tokens[0]}")
+                return tokens
+            else:
+                print("Invalid token choice. Please choose 'x' or 'o'.")
+        except ValueError:
+            print("Invalid input. Please enter (x/o).")
 
 
 def player_choice(board):
@@ -148,7 +151,7 @@ def play_against_computer():
             current_player = player1
             current_token = tokens[0]
 
-    restart = input("Do you want to play again the pc? (yes/no) , for menu tipe 'menu': ").lower()
+    restart = input("to play again type 'yes' , for menu tipe 'menu', any other to exit").lower()
     if restart == "yes":
         play_against_computer()
     elif restart == "menu":
@@ -159,12 +162,20 @@ def play_against_computer():
 
 
 def main():
-    mode = input("Do you want to play against another player or the computer? (player/computer): ").lower()
-    if mode == "player":
-        play_2v2()
-    elif mode == "computer":
-        play_against_computer()
-    else:
-        print("Invalid choice, please start again.")
+    while True:
+        try:
+            mode = input("Do you want to play against another player or the computer? (player/computer) 'q' to end the program: ").lower()
+
+            if mode == "player":
+                play_2v2()
+            elif mode == "computer":
+                play_against_computer()
+            elif mode == "q":
+                break
+            else :
+                raise Exception("Invalid option")
+        except Exception as e:
+            print("\nOops! Invalid option . Try again...")
+
 
 main()
