@@ -171,7 +171,8 @@ def main():
             elif mode == "computer":
                 play_against_computer()
             elif mode == "q":
-                break
+                print("Thank you for playing Tic-Tac-Toe! Goodbye!")
+                return True
             else :
                 raise Exception("Invalid option")
         except Exception as e:
