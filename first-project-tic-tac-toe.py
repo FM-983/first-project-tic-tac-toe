@@ -106,7 +106,7 @@ def play_2v2():
         main()
     else:
         print("Thank you for playing Tic-Tac-Toe! Goodbye!")
-        return
+        return True
 
 
 def play_against_computer():
@@ -158,7 +158,7 @@ def play_against_computer():
         main()
     else:
         print("Thank you for playing Tic-Tac-Toe! Goodbye!")
-        return
+        return True
 
 
 def main():
@@ -174,9 +174,9 @@ def main():
                 print("Thank you for playing Tic-Tac-Toe! Goodbye!")
                 return True
             else :
-                raise Exception("Invalid option")
-        except Exception as e:
-            print("\nOops! Invalid option . Try again...")
+                print("Invalid option")
+        except ValueError:
+            print("Invalid input.")
 
 
 main()
