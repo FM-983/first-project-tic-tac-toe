@@ -125,7 +125,7 @@ def play_2v2():
 
 def name_1_vs_pc():
     while True:
-        player1 = input("Insert the First player name: ")
+        player1 = input("Insert player name: ")
         if not player1:
             print("Player name cannot be empty. Please enter a valid name.")
             continue
@@ -176,18 +176,17 @@ def play_against_computer():
 
     while True:
         try:
-            restart = input("Do you want to play again PC ? (yes/no): ").lower()
+            restart = input("Do you want to play again 2v2? (yes/no): ").lower().strip()
             if restart == "yes":
                 play_against_computer()
                 break
             elif restart == "no":
-                print("Thanks for playing!")
+                print("*****MENU*****\n")
                 break
             else:
                 print("Invalid input. Please enter 'yes', 'no': ")
         except Exception as e:
             print(f"An error occurred: {e}")
-
 
 def main():
     while True:
