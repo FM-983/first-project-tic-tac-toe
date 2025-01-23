@@ -29,7 +29,7 @@ def choose_token(player1):
         try:
             token_choose = input(
                 f"{player1}, choose a token to play (x, o, or press 'Enter' for random choice): "
-            ).lower()
+            ).lower().strip()
             if token_choose == "x":
                 return ["x", "o"]
             elif token_choose == "o":
@@ -191,18 +191,26 @@ def play_against_computer():
 
 def main():
     while True:
+        print("***** WELCOME TO TIC-TAC-TOE *****")
+        print("1. Play against another player")
+        print("2. Play against the computer")
+        print("3. Quit")
+
         try:
-            mode = input("Do you want to play against another player or the computer? (player/computer) 'q' to end the program: ").lower()
-
-            if mode == "player":
+            mode = input("Choose an option (1/2/3): ").strip()
+            if mode == "1":
                 play_2v2()
-            elif mode == "computer":
+            elif mode == "2":
                 play_against_computer()
-            elif mode == "q":
+            elif mode == "3":
                 print("Thank you for playing Tic-Tac-Toe! Goodbye!")
-                return True
+                break
+            else:
+                print("Invalid input. Please enter 1, 2, or 3.")
         except ValueError:
-            print("Invalid input.")
+            print("Invalid input. Please try again.")
 
+if __name__ == "__main__":
+    main()
 
 main()
