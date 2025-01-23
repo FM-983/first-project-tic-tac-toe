@@ -12,9 +12,16 @@ def print_board(board):
 
 
 def players():
-    player1 = input("Insert the First player name: ")
-    player2 = input("Insert the Second player name: ")
-    return player1, player2
+    while True:
+        player1 = input("Insert the First player name: ")
+        if not player1:
+            print("Player name cannot be empty. Please enter a valid name.")
+            continue
+        player2 = input("Insert the Second player name: ")
+        if not player2:
+            print("Player name cannot be empty. Please enter a valid name.")
+            continue
+        return player1, player2
 
 
 def choose_token(player1):
@@ -98,20 +105,36 @@ def play_2v2():
         else:
             current_player = player1
             current_token = tokens[0]
+    while True:
+        try:
+            restart = input("Do you want to play again 2v2? (yes/no): ").lower()
+            if restart == "yes":
+                play_2v2()
+                break
+            elif restart == "no":
+                print("*****MENU*****")
+                break
+            else:
+                print("Invalid input. Please enter 'yes', 'no': ")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
-    restart = input("Do you want to play again 2v2? (yes/no), for menu tipe 'menu': ").lower()
-    if restart == "yes":
-        play_2v2()
-    elif restart == "menu":
-        main()
-    else:
-        print("Thank you for playing Tic-Tac-Toe! Goodbye!")
-        return True
 
+
+
+
+def name_1_vs_pc():
+    while True:
+        player1 = input("Insert the First player name: ")
+        if not player1:
+            print("Player name cannot be empty. Please enter a valid name.")
+            continue
+        else:
+            return player1
 
 def play_against_computer():
     board = [" "] * 9
-    player1 = input("Insert your name: ")
+    player1 = name_1_vs_pc()
     tokens = choose_token(player1)
     computer_token = tokens[1]
     current_player = player1
@@ -151,14 +174,19 @@ def play_against_computer():
             current_player = player1
             current_token = tokens[0]
 
-    restart = input("to play again type 'yes' , for menu tipe 'menu', any other to exit").lower()
-    if restart == "yes":
-        play_against_computer()
-    elif restart == "menu":
-        main()
-    else:
-        print("Thank you for playing Tic-Tac-Toe! Goodbye!")
-        return True
+    while True:
+        try:
+            restart = input("Do you want to play again PC ? (yes/no): ").lower()
+            if restart == "yes":
+                play_against_computer()
+                break
+            elif restart == "no":
+                print("Thanks for playing!")
+                break
+            else:
+                print("Invalid input. Please enter 'yes', 'no': ")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 
 def main():
@@ -173,8 +201,6 @@ def main():
             elif mode == "q":
                 print("Thank you for playing Tic-Tac-Toe! Goodbye!")
                 return True
-            else :
-                print("Invalid option")
         except ValueError:
             print("Invalid input.")
 
